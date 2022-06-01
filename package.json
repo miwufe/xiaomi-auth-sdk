@@ -1,12 +1,15 @@
 {
   "name": "xiaomi-auth-sdk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
     "lib"
   ],
+  "repository": {
+    "url": "https://github.com/zhaoygcq/xiaomi-auth-sdk"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "tsc -watch -p ./",

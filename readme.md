@@ -7,6 +7,7 @@
 `callback`：业务在帐号组注册的callback 或 符合协议的下发serviceToken的callback
 
 `followup`：登录成功后跳转的目标地址
+
 详情请查看官方文档：http://passport.d.xiaomi.net/doc/sso/QR_Login.html
 
 ```ts
