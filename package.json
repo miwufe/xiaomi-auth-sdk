@@ -1,6 +1,6 @@
 {
   "name": "xiaomi-auth-sdk",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -13,6 +13,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "tsc -watch -p ./",
+    "prebuild": "rm -rf ./lib",
     "build": "tsc -p ./"
   },
   "keywords": [],

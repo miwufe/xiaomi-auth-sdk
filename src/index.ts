@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 export interface IConfig {
     sid: string,
     callback: string,
-    followup: string
+    followup?: string
 }
 
 export interface IResponse {
@@ -33,7 +33,7 @@ export class ScanLogin {
 
     // 发送登陆请求，获取长链接等参数
     async getLongPollParams() {
-        let { followup, callback } = this.config;
+        let { followup = "", callback } = this.config;
         const IGNOREPARAMS = new Set(['_nonce']);
         let map = new Map();
         map.set("followup", followup);

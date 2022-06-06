@@ -1,7 +1,7 @@
 import * as sha1 from 'crypto-js/sha1';
 import * as Base64 from 'crypto-js/enc-base64';
 
-const PARAMS = ['sid', 'followup', 'callback'];
+const PARAMS = ['sid', 'callback'];
 
 function genSHA1Signature(joined: string): string {
     let encryptStr = sha1(joined);
