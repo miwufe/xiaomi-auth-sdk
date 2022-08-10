@@ -27,5 +27,5 @@ let res = await test.getLongPollParams();
 let longpollres = await test.getLongPollRes(res.lp);
 
 // 重定向，获取cookie
-let cookie = await test.getLongPollRes(longpollres.location);
+let cookie = await test.getCookie(longpollres.location);
 ```

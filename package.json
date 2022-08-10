@@ -1,6 +1,6 @@
 {
   "name": "xiaomi-auth-sdk",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -20,6 +20,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "crypto-js": "^4.1.1",
     "node-fetch": "2.6.7"
   },

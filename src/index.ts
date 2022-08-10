@@ -1,5 +1,5 @@
 import { genSignature, rejectUtil, checkObjProps, verifyJson } from "./utils"
-import fetch from 'node-fetch';
+import axios from "axios";
 
 export interface IConfig {
     sid: string,
@@ -49,15 +49,17 @@ export class ScanLogin {
             ['callback', CallBack]
         ]);
         let target = `${ScanLogin.TARGET}?${searchParams.toString()}`;
-        const result = await fetch(target);
-        if (result.ok) {
-            const text = await (await result.text()).slice(11);
+        const result = await axios(target);
+        if (result.status == 200) {
+            const text = result.data.slice(11);
             const json: IResponse = await JSON.parse(text);
             // 数据校验
             return verifyJson(json) ? json : Promise.reject(json);
         } else {
             return Promise.reject({ message: "request failed" })
         }
+
+
     }
 
     // 建立长链接，并获取扫码后的响应
@@ -66,15 +68,16 @@ export class ScanLogin {
             return rejectUtil("请传递用于建立长链接的地址")
         }
         // 建立长链接
-        let res = await fetch(longTarget, {
+        let res = await axios(longTarget, {
             headers: {
                 connection: "keep-alive"
             }
         })
 
-        if (res.ok) {
+
+        if (res.status == 200) {
             // 获取重定向地址
-            const text_temp = await res.text();
+            const text_temp = res.data;
             const text = text_temp.slice(11);
             const json: ILongResponse = await JSON.parse(text);
             // 数据校验
@@ -91,14 +94,13 @@ export class ScanLogin {
         }
         try {
             // 获取登陆凭证
-            let redirect = await fetch(`${location}`, { redirect: "manual" });
-            let cookie = redirect.headers.get('set-cookie');
+            await axios(location, {maxRedirects: 0});
+        } catch (e: any) {
+            if(e.response && e.response.headers) {
+                let cookie = e.response.headers['set-cookie'];
 
-            if (!cookie) {
-                return rejectUtil("获取cookie失败");
+                return cookie && cookie.join("");
             }
-            return cookie;
-        } catch (e) {
             return rejectUtil("获取cookie失败");
         }
     }
