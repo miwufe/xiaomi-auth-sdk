@@ -33,7 +33,7 @@ export class ScanLogin {
 
     // 发送登陆请求，获取长链接等参数
     async getLongPollParams() {
-        let { followup = "", callback } = this.config;
+        let { followup = "", callback, sid } = this.config;
         const IGNOREPARAMS = new Set(['_nonce']);
         let map = new Map();
         map.set("followup", followup);
@@ -45,7 +45,7 @@ export class ScanLogin {
         const CallBack = `${callback}?${BaseParams.toString()}`;
 
         const searchParams = new URLSearchParams([
-            ['sid', "mina_cloud"],
+            ['sid', sid],
             ['callback', CallBack]
         ]);
         let target = `${ScanLogin.TARGET}?${searchParams.toString()}`;
