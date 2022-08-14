@@ -1,5 +1,6 @@
 import { genSignature, rejectUtil, checkObjProps, verifyJson } from "./utils"
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch';
+let fetch = require("isomorphic-fetch")
 
 export interface IConfig {
     sid: string,
